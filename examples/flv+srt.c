@@ -140,6 +140,11 @@ int main(int argc, char** argv)
 
         if (flvtag_avcpackettype_nalu == flvtag_avcpackettype(&tag)) {
             if (next_cue && (offset + next_cue->timestamp) <= timestamp) {
+                fprintf(stderr, "NEXT CUES TIMESTAMP: %f\n", next_cue->timestamp);
+                fprintf(stderr, "OFFSET VALUE: %f\n", offset);
+                fprintf(stderr, "CURRENT TIMESTAMP%f\n", timestamp);
+                fprintf(stderr, "DURATION: %f\n", next_cue->duration);
+                // fprintf(stderr, "TEXT OF NEXT CUE %s\n", srt_cue_data(next_cue) );
                 fprintf(stderr, "T: %0.02f (%0.02fs):\n%s\n", (offset + next_cue->timestamp), next_cue->duration, srt_cue_data(next_cue));
                 clear_timestamp = (offset + next_cue->timestamp) + next_cue->duration;
                 flvtag_addcaption_text(&tag, srt_cue_data(next_cue));

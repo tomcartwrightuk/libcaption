@@ -389,6 +389,7 @@ int flvtag_addcaption_text(flvtag_t* tag, const utf8_char_t* text)
     sei_init(&sei, flvtag_pts(tag));
 
     if (text) {
+        fprintf(stderr, "ADDING CAPTION TEXT: %s\n\n", text);
         caption_frame_t frame;
         caption_frame_init(&frame);
         caption_frame_from_text(&frame, text);
